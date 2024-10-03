@@ -1,7 +1,7 @@
 {
-  "name": "armory-embeds",
+  "name": "signup-armory-embeds",
   "version": "0.4.3",
-  "description": "Guild Wars 2 Armory Embeds",
+  "description": "Guild Wars 2 Armory Embeds for gw2signup.com",
   "pre-commit": [
     "test"
   ],
