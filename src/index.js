@@ -22,6 +22,7 @@ const init = () => {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('Rerender', init);
 } else {
   setTimeout(init, 1);
 }

@@ -29,14 +29,22 @@ export type EmbedProps = {
 const makeClassName = (str) => `gw2a-${str}-embed`;
 export const makeAttribute = (str: string) => `data-armory-${str}`;
 
+let stylesLoaded = false;
+
 function fetchStyles () {
-  return axios.get(`${__webpack_public_path__}embeds-manifest.json`)
+  if (stylesLoaded) {
+    return;
+  }
+
+  axios.get(`${__webpack_public_path__}embeds-manifest.json`)
     .then((response) => {
       const styleSheetPath = response.data['armory-embeds.css'];
       if (styleSheetPath) {
         addStyleSheet(`${__webpack_public_path__}${styleSheetPath}`);
       }
     });
+
+  stylesLoaded = true;
 }
 
 function setOptions () {
@@ -99,10 +107,10 @@ function bootstrapEmbeds ({ lang }) {
   });
 }
 
-let loaded = false;
+let tooltipLoaded = false;
 
 function bootstrapTooltip ({ lang }) {
-  if (loaded) {
+  if (tooltipLoaded) {
     return;
   }
 
@@ -120,7 +128,7 @@ function bootstrapTooltip ({ lang }) {
     tooltipContainer
   );
 
-  loaded = true;
+  tooltipLoaded = true;
 }
 
 export default function bootstrap () {
